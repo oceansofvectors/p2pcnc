@@ -1,0 +1,7 @@
+version: '3.8'
+
+services:
+  p2p:
+    image: p2p-image
+    ports:
+      - 8080:8080
