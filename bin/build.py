@@ -2,6 +2,9 @@
 
 import subprocess
 
+# Build the binary
+subprocess.run(["go", "build", "server.go"])
+
 # Build the Docker image
 subprocess.run(["docker", "build", "-t", "p2p:latest", "."])
 

@@ -2,6 +2,7 @@ package main
 
 import (
 	"bufio"
+	"flag"
 	"fmt"
 	"net"
 	"strings"
@@ -96,14 +97,18 @@ func (s *server) run() {
 }
 
 func main() {
+	// parse the command line arguments
+	port := flag.Int("port", 8080, "the port number to listen on")
+	flag.Parse()
+
 	// create a new server instance
 	srv := newServer()
 
 	// start the server in a goroutine
 	go srv.run()
 
-	// listen for incoming client connections on port 8080
-	ln, err := net.Listen("tcp", ":8080")
+	// listen for incoming client connections on the specified port
+	ln, err := net.Listen("tcp", fmt.Sprintf(":%d", *port))
 	if err != nil {
 		// handle the error
 		fmt.Println(err)
@@ -111,7 +116,7 @@ func main() {
 	}
 
 	// print a message to the server console
-	fmt.Println("server listening on port 8080")
+	fmt.Println("server listening on port", *port)
 
 	// accept incoming client connections in a loop
 	for {

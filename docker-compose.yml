@@ -1,7 +1,26 @@
 version: '3.8'
 
 services:
-  p2p:
-    image: p2p-image
+  node1:
+    image: p2p:latest
     ports:
       - 8080:8080
+    command: ["/server", "--port", "8080"]
+
+  node2:
+    image: p2p:latest
+    ports:
+      - 8081:8081
+    command: ["/server", "--port", "8081"]
+
+  node3:
+    image: p2p:latest
+    ports:
+      - 8082:8082
+    command: ["/server", "--port", "8082"]
+
+  node4:
+    image: p2p:latest
+    ports:
+      - 8083:8083
+    command: ["/server", "--port", "8083"]
